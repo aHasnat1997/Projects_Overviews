@@ -117,13 +117,36 @@ I integrated Stripe for checkout and seller onboarding, enforced order state tra
 
 ## Screenshots / Demo
 
-- Admin dashboard overview (insert screenshot)
+<!-- - Admin dashboard overview (insert screenshot)
 - Seller catalog and order management views (insert screenshot)
 - Buyer browsing and checkout flow (insert screenshot)
 - Mobile responsiveness preview (insert screenshot)
 - Architecture diagram (optional)
 - Live demo: Not publicly available
-- GitHub: Not publicly available
+- GitHub: Not publicly available -->
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0;">
+  <div>
+    <img src="./assets/image-1.png" alt="Admin Dashboard Overview" style="width: 100%; border-radius: 8px;" />
+    <p align="center"><em>Admin Dashboard Overview</em></p>
+  </div>
+  <div>
+    <img src="./assets/image-2.png" alt="Seller Product Details" style="width: 100%; border-radius: 8px;" />
+    <p align="center"><em>Seller Product Details views</em></p>
+  </div>
+  <div>
+    <img src="./assets/image-3.png" alt="Orders Table View" style="width: 100%; border-radius: 8px;" />
+    <p align="center"><em>Orders Table View</em></p>
+  </div>
+  <div>
+    <img src="./assets/image-4.png" alt="Order Details View" style="width: 100%; border-radius: 8px;" />
+    <p align="center"><em>Order Details View</em></p>
+  </div>
+  <div>
+    <img src="./assets/image-5.png" alt="Seller Store Details" style="width: 100%; border-radius: 8px;" />
+    <p align="center"><em>Seller Store Details</em></p>
+  </div>
+</div>
 
 ## What I Learned
 
