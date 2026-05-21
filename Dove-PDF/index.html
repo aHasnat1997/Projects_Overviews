@@ -1,0 +1,934 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dove-PDF Case Study</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0b0c0f;
+        --bg-elev: #12141a;
+        --bg-soft: #181b23;
+        --text: #e6e9ef;
+        --muted: #b1b6c2;
+        --accent: #3fd0b2;
+        --accent-2: #e7a86f;
+        --line: #2a2f3b;
+        --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+        --radius: 20px;
+        --maxw: 1120px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Space Grotesk", "Segoe UI", sans-serif;
+        background:
+          radial-gradient(
+            1200px 700px at 15% -10%,
+            rgba(63, 208, 178, 0.12),
+            transparent 60%
+          ),
+          radial-gradient(
+            900px 600px at 90% 10%,
+            rgba(231, 168, 111, 0.1),
+            transparent 60%
+          ),
+          linear-gradient(180deg, #0a0b0e 0%, #0e1117 100%);
+        color: var(--text);
+        line-height: 1.65;
+        letter-spacing: 0.1px;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .page {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .page::before,
+      .page::after {
+        content: "";
+        position: absolute;
+        width: 520px;
+        height: 520px;
+        border-radius: 50%;
+        filter: blur(100px);
+        opacity: 0.2;
+        z-index: 0;
+      }
+
+      .page::before {
+        background: #3fd0b2;
+        top: -220px;
+        right: -180px;
+      }
+
+      .page::after {
+        background: #e7a86f;
+        bottom: -260px;
+        left: -180px;
+      }
+
+      .container {
+        width: min(100%, var(--maxw));
+        margin: 0 auto;
+        padding: 64px 24px 120px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero {
+        display: grid;
+        gap: 32px;
+        align-items: center;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        padding: 40px 32px;
+        border-radius: var(--radius);
+        background: linear-gradient(
+          135deg,
+          rgba(63, 208, 178, 0.08),
+          rgba(231, 168, 111, 0.08)
+        );
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+      }
+
+      .hero h1 {
+        font-family: "Fraunces", "Times New Roman", serif;
+        font-size: clamp(2rem, 3vw, 3rem);
+        line-height: 1.1;
+        margin-bottom: 16px;
+      }
+
+      .hero p {
+        color: var(--muted);
+        font-size: 1rem;
+      }
+
+      .hero-card {
+        background: rgba(11, 12, 15, 0.8);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 20px;
+        display: grid;
+        gap: 14px;
+      }
+
+      .pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .pill {
+        padding: 6px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: rgba(24, 27, 35, 0.8);
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+
+      .section {
+        margin-top: 56px;
+        padding: 28px 28px 32px;
+        border-radius: var(--radius);
+        background: var(--bg-elev);
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+      }
+
+      .section h2 {
+        font-family: "Fraunces", "Times New Roman", serif;
+        font-size: 1.7rem;
+        margin-bottom: 16px;
+      }
+
+      .section h3 {
+        font-size: 1.1rem;
+        margin-top: 20px;
+        margin-bottom: 8px;
+        color: var(--accent);
+      }
+
+      .section p {
+        color: var(--muted);
+        margin-bottom: 12px;
+      }
+
+      .grid {
+        display: grid;
+        gap: 18px;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      }
+
+      .card {
+        padding: 18px;
+        border-radius: 16px;
+        background: var(--bg-soft);
+        border: 1px solid var(--line);
+      }
+
+      ul {
+        list-style: none;
+        display: grid;
+        gap: 10px;
+        color: var(--muted);
+      }
+
+      ul li {
+        position: relative;
+        padding-left: 18px;
+      }
+
+      ul li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.55rem;
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--accent);
+      }
+
+      .stack-list {
+        display: grid;
+        gap: 14px;
+      }
+
+      .stack-item {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 12px 14px;
+        border-radius: 14px;
+        background: rgba(18, 20, 26, 0.9);
+        border: 1px solid var(--line);
+      }
+
+      .stack-item span {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(63, 208, 178, 0.14);
+        color: var(--text);
+        font-size: 0.8rem;
+        border: 1px solid rgba(63, 208, 178, 0.4);
+      }
+
+      .metrics {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      }
+
+      .metric {
+        padding: 18px;
+        border-radius: 16px;
+        background: linear-gradient(
+          160deg,
+          rgba(63, 208, 178, 0.12),
+          rgba(24, 27, 35, 0.9)
+        );
+        border: 1px solid var(--line);
+      }
+
+      .metric h4 {
+        font-size: 1.1rem;
+        margin-bottom: 6px;
+      }
+
+      .metric p {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .images {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        margin-top: 18px;
+      }
+
+      .image-card {
+        background: var(--bg-soft);
+        border-radius: 16px;
+        border: 1px solid var(--line);
+        overflow: hidden;
+      }
+
+      .image-card img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        display: block;
+        cursor: pointer;
+        transition:
+          transform 0.3s ease,
+          opacity 0.3s ease;
+      }
+
+      .image-card img:hover {
+        transform: scale(1.05);
+        opacity: 0.9;
+      }
+
+      .image-card div {
+        padding: 12px 14px;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .footer {
+        margin-top: 60px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .reveal {
+        animation: rise 0.9s ease both;
+      }
+
+      .delay-1 {
+        animation-delay: 0.05s;
+      }
+      .delay-2 {
+        animation-delay: 0.12s;
+      }
+      .delay-3 {
+        animation-delay: 0.2s;
+      }
+      .delay-4 {
+        animation-delay: 0.28s;
+      }
+
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(18px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 720px) {
+        .container {
+          padding: 48px 18px 96px;
+        }
+
+        .hero {
+          padding: 28px 20px;
+        }
+
+        .section {
+          padding: 22px 20px 26px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .reveal,
+        .delay-1,
+        .delay-2,
+        .delay-3,
+        .delay-4 {
+          animation: none;
+        }
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal.active {
+        display: flex;
+      }
+
+      .modal-content {
+        position: relative;
+        max-width: 90%;
+        max-height: 90vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal-content img {
+        max-width: 100%;
+        max-height: 90vh;
+        object-fit: contain;
+        border-radius: 8px;
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 10000;
+        transition: color 0.3s ease;
+      }
+
+      .modal-close:hover {
+        color: var(--accent);
+      }
+
+      .modal-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        padding: 16px 20px;
+        font-size: 24px;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        user-select: none;
+      }
+
+      .modal-nav:hover {
+        background: rgba(63, 208, 178, 0.3);
+        border-color: var(--accent);
+      }
+
+      .modal-prev {
+        left: 30px;
+      }
+
+      .modal-next {
+        right: 30px;
+      }
+
+      .modal-caption {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #fff;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-size: 1rem;
+      }
+
+      @media (max-width: 720px) {
+        .modal-nav {
+          padding: 12px 16px;
+          font-size: 20px;
+        }
+
+        .modal-prev {
+          left: 10px;
+        }
+
+        .modal-next {
+          right: 10px;
+        }
+
+        .modal-close {
+          top: 10px;
+          right: 15px;
+          font-size: 32px;
+        }
+
+        .modal-caption {
+          font-size: 0.9rem;
+          padding: 10px 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <main class="container">
+        <section class="hero reveal">
+          <div>
+            <span class="badge">Case Study</span>
+            <h1>Dove-PDF Tools Platform</h1>
+            <p>
+              A comprehensive online PDF editor and toolkit that enables users
+              to upload, edit, merge, compress, and optimize PDF files directly
+              in the browser. Built with modern TypeScript stack for scalability
+              and performance, featuring a clean interface and monetization
+              through ad placements.
+            </p>
+            <div class="pill-row" style="margin-top: 16px">
+              <span class="pill">Role: Fullstack Developer</span>
+              <span class="pill">Scope: PDF Tools Platform</span>
+              <span class="pill">
+                Focus: PDF Processing + UX + Modern Stack
+              </span>
+            </div>
+          </div>
+          <div class="hero-card">
+            <strong>Highlights</strong>
+            <p>
+              PDF upload & editing, multi-file merging, compression, scalable
+              architecture, and ad integration.
+            </p>
+            <div class="pill-row">
+              <span class="pill">TypeScript</span>
+              <span class="pill">React</span>
+              <span class="pill">tRPC</span>
+              <span class="pill">PDF-lib</span>
+              <span class="pill">Bun</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section reveal delay-1" id="overview">
+          <h2>Overview</h2>
+          <p>
+            Dove-PDF is an online PDF tools platform that simplifies document
+            management for users. Upload PDFs or images, edit content, merge
+            multiple files, compress for optimization, and download processed
+            documents—all through a clean, intuitive web interface.
+          </p>
+          <div class="grid">
+            <div class="card">
+              <h3>Vision</h3>
+              <p>
+                Create a simple yet powerful PDF toolkit accessible to everyone,
+                with a scalable architecture ready for future tool additions.
+              </p>
+            </div>
+            <div class="card">
+              <h3>User Experience</h3>
+              <p>
+                Clean, distraction-free interface that guides users through
+                upload, processing, and download workflows with minimal
+                friction.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Outcome</h3>
+              <p>
+                A production-ready PDF platform with core editing features,
+                monetization through ads, and extensible architecture for new
+                tools.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section reveal delay-2" id="problem">
+          <h2>Problem / Challenge</h2>
+          <p>
+            Users need quick, reliable tools to manage PDF documents without
+            installing desktop software. The challenge was to build a web-based
+            platform that handles PDF uploads, editing, merging, and compression
+            efficiently while maintaining file quality and security. The system
+            needed to process files client-side when possible for privacy,
+            handle large files gracefully, provide instant feedback, and support
+            a scalable architecture for adding more PDF tools. Additionally, the
+            platform required ad integration for monetization without
+            compromising user experience.
+          </p>
+        </section>
+
+        <section class="section reveal delay-2" id="solution">
+          <h2>Solution</h2>
+          <p>
+            I delivered a comprehensive PDF tools platform using a modern
+            TypeScript stack. The frontend is built with React and Vite,
+            featuring drag-and-drop file uploads, real-time processing feedback,
+            and a clean TailwindCSS interface. I integrated PDF-lib for
+            client-side PDF manipulation, enabling editing, merging, and
+            compression without server round-trips for enhanced privacy. The
+            backend API, built with Express and tRPC, processing coordination,
+            and serves optimized files. The monorepo architecture with Turborepo
+            ensures maintainability and easy addition of new tools. Google Ads
+            integration provides monetization while maintaining a clean user
+            experience.
+          </p>
+        </section>
+
+        <section class="section reveal delay-3" id="role">
+          <h2>My Role</h2>
+          <p><strong>Fullstack Developer</strong></p>
+          <ul>
+            <li>
+              Architected the PDF processing pipeline with client-side and
+              server-side components
+            </li>
+            <li>
+              Implemented PDF upload, editing, merging, and compression features
+              using PDF-lib
+            </li>
+            <li>
+              Built drag-and-drop file upload interface with real-time progress
+              feedback
+            </li>
+            <li>
+              Designed clean, intuitive UI with TailwindCSS for seamless user
+              workflows
+            </li>
+            <li>
+              Integrated Google Ads placements strategically for monetization
+            </li>
+            <li>
+              Created scalable backend API with tRPC for file handling and
+              processing coordination
+            </li>
+            <li>
+              Optimized file processing for performance and memory efficiency
+            </li>
+            <li>
+              Set up monorepo structure for easy addition of future PDF tools
+            </li>
+          </ul>
+        </section>
+
+        <section class="section reveal delay-3" id="stack">
+          <h2>Tech Stack</h2>
+          <div class="grid">
+            <div class="stack-item">
+              <strong>Frontend</strong>
+              <span>React, Vite, TailwindCSS, TypeScript, PDF-lib</span>
+            </div>
+            <div class="stack-item">
+              <strong>Backend</strong>
+              <span>Express, tRPC, TypeScript, File Processing APIs</span>
+            </div>
+            <div class="stack-item">
+              <strong>PDF Processing</strong>
+              <span>PDF-lib, Canvas API, File API, Blob handling</span>
+            </div>
+            <div class="stack-item">
+              <strong>Infrastructure</strong>
+              <span>Bun runtime, Turborepo, Google Ads, Git</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section reveal delay-4" id="features">
+          <h2>Key Features</h2>
+          <ul>
+            <li>PDF and image upload and file validation</li>
+            <li>
+              PDF editing capabilities including text, annotations, and page
+              manipulation
+            </li>
+            <li>
+              Merge multiple PDF files into a single document with custom
+              ordering
+            </li>
+            <li>
+              Compress and optimize PDF files to reduce size while maintaining
+              quality
+            </li>
+            <li>Real-time processing feedback with progress indicators</li>
+            <li>Instant download of processed files with proper naming</li>
+            <li>
+              Clean, intuitive interface designed for simplicity and ease of use
+            </li>
+            <li>
+              Client-side processing for enhanced privacy and faster operations
+            </li>
+            <li>
+              Google Ads integration for monetization without disrupting
+              workflow
+            </li>
+            <li>
+              Scalable architecture ready for additional PDF tools and features
+            </li>
+          </ul>
+        </section>
+
+        <section class="section reveal delay-4" id="contributions">
+          <h2>My Contributions</h2>
+          <ul>
+            <li>
+              Built the complete PDF upload system with file validation, and
+              preview
+            </li>
+            <li>
+              Implemented PDF editing features using PDF-lib for text,
+              annotations, and modifications
+            </li>
+            <li>
+              Created PDF merge functionality with reorderable file list and
+              batch processing
+            </li>
+            <li>
+              Developed compression algorithm integration to optimize PDF file
+              sizes
+            </li>
+            <li>
+              Designed and built the clean, user-friendly interface with
+              TailwindCSS
+            </li>
+            <li>
+              Integrated Google Ads with strategic placement for optimal
+              monetization
+            </li>
+            <li>
+              Implemented file processing pipeline with progress tracking and
+              error handling
+            </li>
+            <li>
+              Set up backend API with tRPC for file storage and processing
+              coordination
+            </li>
+            <li>
+              Optimized client-side processing for performance and memory
+              management
+            </li>
+            <li>
+              Created extensible architecture for easy addition of new PDF tools
+            </li>
+          </ul>
+        </section>
+
+        <section class="section reveal" id="challenges">
+          <h2>Challenges &amp; Solutions</h2>
+          <div class="grid">
+            <div class="card">
+              <h3>Large file handling and performance</h3>
+              <p>
+                <strong>Problem:</strong> Processing large PDF files in the
+                browser can cause memory issues and slow performance, leading to
+                poor user experience.
+              </p>
+              <p>
+                <strong>Solution:</strong> Implemented chunked file processing
+                with Web Workers for heavy operations, added progress
+                indicators, and optimized memory usage by processing files in
+                streams where possible.
+              </p>
+            </div>
+            <div class="card">
+              <h3>PDF manipulation complexity</h3>
+              <p>
+                <strong>Problem:</strong> PDF editing, merging, and compression
+                require complex operations while maintaining document integrity
+                and quality.
+              </p>
+              <p>
+                <strong>Solution:</strong> Integrated PDF-lib for robust
+                client-side manipulation, implemented validation checks at each
+                step, and created fallback server-side processing for complex
+                operations.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Monetization without disruption</h3>
+              <p>
+                <strong>Problem:</strong> Integrating ads for revenue while
+                maintaining a clean, user-friendly interface without disrupting
+                the workflow.
+              </p>
+              <p>
+                <strong>Solution:</strong> Strategically placed Google Ads in
+                non-intrusive locations, implemented lazy loading for ad
+                scripts, and ensured ads don't interfere with core PDF
+                processing functionality.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section reveal" id="impact">
+          <h2>Results / Impact</h2>
+          <div class="metrics">
+            <div class="metric">
+              <h4>Complete PDF toolkit</h4>
+              <p>
+                Delivered all core features: upload, edit, merge, compress, and
+                download with intuitive workflows.
+              </p>
+            </div>
+            <div class="metric">
+              <h4>Fast processing</h4>
+              <p>
+                Client-side processing provides instant feedback and enhanced
+                privacy for users.
+              </p>
+            </div>
+            <div class="metric">
+              <h4>Scalable architecture</h4>
+              <p>
+                Modular design allows easy addition of new PDF tools and
+                features as needed.
+              </p>
+            </div>
+            <div class="metric">
+              <h4>Monetization ready</h4>
+              <p>
+                Google Ads integration provides revenue stream without
+                compromising user experience.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section reveal" id="screens">
+          <h2>Screenshots / Demo</h2>
+          <div class="images">
+            <div class="image-card">
+              <img
+                src="./assets/image-1.png"
+                alt="PDF upload interface"
+                onclick="openModal(0)"
+              />
+              <div>Hero Section</div>
+            </div>
+            <div class="image-card">
+              <img
+                src="./assets/image-2.png"
+                alt="PDF editor"
+                onclick="openModal(1)"
+              />
+              <div>PDF editing interface</div>
+            </div>
+            <div class="image-card">
+              <img
+                src="./assets/image-3.png"
+                alt="Merge PDFs"
+                onclick="openModal(2)"
+              />
+              <div>Full Landing Page</div>
+            </div>
+            <!-- <div class="image-card">
+              <img
+                src="./assets/image-4.png"
+                alt="Compression tool"
+                onclick="openModal(3)"
+              />
+              <div>PDF compression tool</div>
+            </div> -->
+          </div>
+        </section>
+
+        <section class="section reveal" id="learning">
+          <h2>What I Learned</h2>
+          <p>
+            This project deepened my understanding of client-side PDF
+            manipulation, file processing optimization, and memory management
+            for large files in the browser. I gained valuable experience with
+            PDF-lib, Web Workers for performance, and balancing feature richness
+            with simplicity in user interface design. The challenge of
+            integrating monetization while maintaining user experience taught me
+            important lessons about strategic ad placement.
+          </p>
+        </section>
+
+        <section class="section reveal" id="confidential">
+          <h2>Project Information</h2>
+          <p>
+            Dove-PDF is a production-ready online PDF tools platform that
+            demonstrates modern web development practices with a focus on user
+            experience, performance, and scalability.
+          </p>
+        </section>
+
+        <div class="footer">
+          Dove-PDF Case Study — online PDF editor and toolkit platform
+        </div>
+      </main>
+    </div>
+
+    <div id="imageModal" class="modal">
+      <span class="modal-close" onclick="closeModal()">&times;</span>
+      <div class="modal-nav modal-prev" onclick="changeImage(-1)">&#10094;</div>
+      <div class="modal-content">
+        <img id="modalImage" src="" alt="" />
+        <div id="modalCaption" class="modal-caption"></div>
+      </div>
+      <div class="modal-nav modal-next" onclick="changeImage(1)">&#10095;</div>
+    </div>
+
+    <script>
+      const images = [
+        {
+          src: "./assets/image-1.png",
+          caption: "PDF upload with drag-and-drop",
+        },
+        { src: "./assets/image-2.png", caption: "PDF editing interface" },
+        { src: "./assets/image-3.png", caption: "Merge multiple PDFs" },
+        { src: "./assets/image-4.png", caption: "PDF compression tool" },
+      ];
+
+      let currentIndex = 0;
+
+      function openModal(index) {
+        currentIndex = index;
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const caption = document.getElementById("modalCaption");
+
+        modal.classList.add("active");
+        modalImg.src = images[currentIndex].src;
+        caption.textContent = images[currentIndex].caption;
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal() {
+        const modal = document.getElementById("imageModal");
+        modal.classList.remove("active");
+        document.body.style.overflow = "auto";
+      }
+
+      function changeImage(direction) {
+        currentIndex += direction;
+        if (currentIndex < 0) currentIndex = images.length - 1;
+        if (currentIndex >= images.length) currentIndex = 0;
+
+        const modalImg = document.getElementById("modalImage");
+        const caption = document.getElementById("modalCaption");
+        modalImg.src = images[currentIndex].src;
+        caption.textContent = images[currentIndex].caption;
+      }
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") closeModal();
+        if (event.key === "ArrowLeft") changeImage(-1);
+        if (event.key === "ArrowRight") changeImage(1);
+      });
+
+      document
+        .getElementById("imageModal")
+        .addEventListener("click", function (event) {
+          if (event.target === this) closeModal();
+        });
+    </script>
+  </body>
+</html>
