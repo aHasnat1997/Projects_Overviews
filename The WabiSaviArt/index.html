@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WabiSaviArt Case Study</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0b0c0f;
+        --bg-elev: #12141a;
+        --bg-soft: #181b23;
+        --text: #e6e9ef;
+        --muted: #b1b6c2;
+        --accent: #3fd0b2;
+        --accent-2: #e7a86f;
+        --line: #2a2f3b;
+        --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+        --radius: 20px;
+        --maxw: 1120px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+        background:
+          radial-gradient(
+            1200px 700px at 15% -10%,
+            rgba(63, 208, 178, 0.12),
+            transparent 60%
+          ),
+          radial-gradient(
+            900px 600px at 90% 10%,
+            rgba(231, 168, 111, 0.1),
+            transparent 60%
+          ),
+          linear-gradient(180deg, #0a0b0e 0%, #0e1117 100%);
+        color: var(--text);
+        line-height: 1.65;
+        letter-spacing: 0.1px;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .page {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .page::before,
+      .page::after {
+        content: '';
+        position: absolute;
+        width: 520px;
+        height: 520px;
+        border-radius: 50%;
+        filter: blur(100px);
+        opacity: 0.2;
+        z-index: 0;
+      }
+
+      .page::before {
+        background: #3fd0b2;
+        top: -220px;
+        right: -180px;
+      }
+
+      .page::after {
+        background: #e7a86f;
+        bottom: -260px;
+        left: -180px;
+      }
+
+      .container {
+        width: min(100%, var(--maxw));
+        margin: 0 auto;
+        padding: 64px 24px 120px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero {
+        display: grid;
+        gap: 32px;
+        align-items: center;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        padding: 40px 32px;
+        border-radius: var(--radius);
+        background: linear-gradient(
+          135deg,
+          rgba(63, 208, 178, 0.08),
+          rgba(231, 168, 111, 0.08)
+        );
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+      }
+
+      .hero h1 {
+        font-family: 'Fraunces', 'Times New Roman', serif;
+        font-size: clamp(2.2rem, 3vw, 3.4rem);
+        line-height: 1.1;
+        margin-bottom: 16px;
+      }
+
+      .hero p {
+        color: var(--muted);
+        font-size: 1.05rem;
+      }
+
+      .hero-card {
+        background: rgba(11, 12, 15, 0.8);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 20px;
+        display: grid;
+        gap: 14px;
+      }
+
+      .pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .pill {
+        padding: 6px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: rgba(24, 27, 35, 0.8);
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+
+      .section {
+        margin-top: 56px;
+        padding: 28px 28px 32px;
+        border-radius: var(--radius);
+        background: var(--bg-elev);
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+      }
+
+      .section h2 {
+        font-family: 'Fraunces', 'Times New Roman', serif;
+        font-size: 1.7rem;
+        margin-bottom: 16px;
+      }
+
+      .section h3 {
+        font-size: 1.1rem;
+        margin-top: 20px;
+        margin-bottom: 8px;
+        color: var(--accent);
+      }
+
+      .section p {
+        color: var(--muted);
+        margin-bottom: 12px;
+      }
+
+      .grid {
+        display: grid;
+        gap: 18px;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      }
+
+      .card {
+        padding: 18px;
+        border-radius: 16px;
+        background: var(--bg-soft);
+        border: 1px solid var(--line);
+      }
+
+      ul {
+        list-style: none;
+        display: grid;
+        gap: 10px;
+        color: var(--muted);
+      }
+
+      ul li {
+        position: relative;
+        padding-left: 18px;
+      }
+
+      ul li::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.55rem;
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--accent);
+      }
+
+      .stack-list {
+        display: grid;
+        gap: 14px;
+      }
+
+      .stack-item {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 12px 14px;
+        border-radius: 14px;
+        background: rgba(18, 20, 26, 0.9);
+        border: 1px solid var(--line);
+      }
+
+      .stack-item span {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(63, 208, 178, 0.14);
+        color: var(--text);
+        font-size: 0.8rem;
+        border: 1px solid rgba(63, 208, 178, 0.4);
+      }
+
+      .metrics {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      }
+
+      .metric {
+        padding: 18px;
+        border-radius: 16px;
+        background: linear-gradient(
+          160deg,
+          rgba(63, 208, 178, 0.12),
+          rgba(24, 27, 35, 0.9)
+        );
+        border: 1px solid var(--line);
+      }
+
+      .metric h4 {
+        font-size: 1.1rem;
+        margin-bottom: 6px;
+      }
+
+      .metric p {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .images {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        margin-top: 18px;
+      }
+
+      .image-card {
+        background: var(--bg-soft);
+        border-radius: 16px;
+        border: 1px solid var(--line);
+        overflow: hidden;
+      }
+
+      .image-card img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .image-card div {
+        padding: 12px 14px;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .footer {
+        margin-top: 60px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .reveal {
+        animation: rise 0.9s ease both;
+      }
+
+      .delay-1 {
+        animation-delay: 0.05s;
+      }
+      .delay-2 {
+        animation-delay: 0.12s;
+      }
+      .delay-3 {
+        animation-delay: 0.2s;
+      }
+      .delay-4 {
+        animation-delay: 0.28s;
+      }
+
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(18px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 720px) {
+        .container {
+          padding: 48px 18px 96px;
+        }
+
+        .hero {
+          padding: 28px 20px;
+        }
+
+        .section {
+          padding: 22px 20px 26px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .reveal,
+        .delay-1,
+        .delay-2,
+        .delay-3,
+        .delay-4 {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <main class="container">
+        <section class="hero reveal">
+          <div>
+            <span class="badge">Case Study</span>
+            <h1>WabiSaviArt Marketplace Platform</h1>
+            <p>
+              An Etsy-inspired, multi-vendor marketplace built around
+              transparency, authenticity, and community trust. The platform
+              connects buyers and verified makers with secure checkout,
+              messaging, and story-driven product pages.
+            </p>
+            <div class="pill-row" style="margin-top: 16px">
+              <span class="pill">Role: Backend Developer</span>
+              <span class="pill">Scope: Marketplace Platform</span>
+              <span class="pill">Focus: Trust + Payments</span>
+            </div>
+          </div>
+          <div class="hero-card">
+            <strong>Highlights</strong>
+            <p>
+              Role-based dashboards, maker verification, review import, and
+              multi-seller payouts.
+            </p>
+            <div class="pill-row">
+              <span class="pill">NestJS</span>
+              <span class="pill">Prisma</span>
+              <span class="pill">Stripe</span>
+              <span class="pill">Redis</span>
+              <span class="pill">PostgreSQL</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section reveal delay-1" id="overview">
+          <h2>Overview</h2>
+          <p>
+            WabiSaviArt is a marketplace that prioritizes genuine creators and
+            transparent commerce. The experience blends discovery, storytelling,
+            and verified reviews with strong admin oversight and seller tooling.
+          </p>
+          <div class="grid">
+            <div class="card">
+              <h3>Vision</h3>
+              <p>
+                Empower authentic makers and help buyers shop with confidence
+                through verifiable signals and human review.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Audience</h3>
+              <p>
+                Independent artisans, boutique sellers, and customers seeking
+                trusted, handcrafted products.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Outcome</h3>
+              <p>
+                A modular marketplace backend that supports scale, transparency,
+                and feature growth.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section reveal delay-2" id="problem">
+          <h2>Problem / Challenge</h2>
+          <p>
+            The client needed a production-ready marketplace where sellers could
+            manage products, orders, and shop identity, while buyers could
+            browse, purchase, and communicate seamlessly. Beyond standard
+            e-commerce, the platform had to support authenticity signals such as
+            maker verification, imported reviews, transparent fees, and admin
+            oversight of listings and disputes. The system also required
+            reliable media handling and multi-seller payment flows without
+            compromising performance or maintainability.
+          </p>
+        </section>
+
+        <section class="section reveal delay-2" id="solution">
+          <h2>Solution</h2>
+          <p>
+            I delivered a modular backend built with NestJS and Prisma, designed
+            around clear domain boundaries for users, sellers, catalog, orders,
+            payments, and messaging. I integrated Stripe for checkout, refunds,
+            and seller onboarding, implemented S3-compatible media uploads with
+            presigned URLs, and added Redis-backed caching and sessions for
+            stability. The API supports role-based workflows for buyers,
+            sellers, and admins, enabling marketplace operations, verification
+            features, and transparency reporting.
+          </p>
+        </section>
+
+        <section class="section reveal delay-3" id="role">
+          <h2>My Role</h2>
+          <p><strong>Backend Developer</strong></p>
+          <ul>
+            <li>
+              Architected and implemented core API modules for auth, catalog,
+              orders, payments, and media
+            </li>
+            <li>
+              Built role-based access control for admin, seller, and customer
+              workflows
+            </li>
+            <li>
+              Modeled and migrated the database schema with Prisma, including
+              catalog variants and order lifecycle
+            </li>
+            <li>
+              Integrated Stripe checkout, refunds, and seller onboarding and
+              payout flows
+            </li>
+            <li>
+              Implemented object storage uploads with presigned URLs and secure
+              validation
+            </li>
+            <li>
+              Supported deployment with Docker and runtime configuration for
+              production
+            </li>
+          </ul>
+        </section>
+
+        <section class="section reveal delay-3" id="stack">
+          <h2>Tech Stack</h2>
+          <div class="grid">
+            <div class="stack-item">
+              <strong>Frontend</strong>
+              <span>React, Vite, Refine, Material UI, TypeScript</span>
+            </div>
+            <div class="stack-item">
+              <strong>Backend</strong>
+              <span>Node.js (Bun runtime), NestJS, Prisma ORM</span>
+            </div>
+            <div class="stack-item">
+              <strong>Database</strong>
+              <span>PostgreSQL</span>
+            </div>
+            <div class="stack-item">
+              <strong>Infrastructure &amp; Tools</strong>
+              <span
+                >Docker, Redis, Stripe, S3-compatible storage, Twilio,
+                Nodemailer, Git</span
+              >
+            </div>
+          </div>
+        </section>
+
+        <section class="section reveal delay-4" id="features">
+          <h2>Key Features</h2>
+          <ul>
+            <li>
+              Role-based authentication and authorization for buyer, seller, and
+              admin roles
+            </li>
+            <li>
+              Admin dashboard for marketplace oversight, listing review, and
+              dispute management
+            </li>
+            <li>
+              Product listings with variants, inventory, and media galleries
+            </li>
+            <li>
+              Order management with refunds, disputes, and lifecycle tracking
+            </li>
+            <li>Messaging between buyers and sellers</li>
+            <li>Review import and verified review workflows</li>
+            <li>Maker verification and badge-based authenticity signals</li>
+            <li>Seller shop journal for updates and storytelling</li>
+            <li>Stripe checkout with seller onboarding and payouts</li>
+            <li>Analytics and transparency reporting</li>
+          </ul>
+        </section>
+
+        <section class="section reveal delay-4" id="contributions">
+          <h2>My Contributions</h2>
+          <ul>
+            <li>
+              Built the core NestJS modules and API contracts for marketplace
+              operations
+            </li>
+            <li>
+              Designed Prisma models for users, sellers, products, orders,
+              refunds, and disputes
+            </li>
+            <li>
+              Implemented Stripe payment intent flow, refunds, and seller
+              onboarding
+            </li>
+            <li>
+              Added media uploads using S3-compatible storage with presigned
+              URLs
+            </li>
+            <li>
+              Introduced Redis-backed caching and session support for
+              performance
+            </li>
+            <li>
+              Hardened validation and error handling across public-facing
+              endpoints
+            </li>
+            <li>Packaged the app for containerized deployment with Docker</li>
+          </ul>
+        </section>
+
+        <section class="section reveal" id="challenges">
+          <h2>Challenges &amp; Solutions</h2>
+          <div class="grid">
+            <div class="card">
+              <h3>Multi-variant catalog and data integrity</h3>
+              <p>
+                <strong>Problem:</strong> The product catalog needed to support
+                variants, inventory, and rich media while preserving consistency
+                and fast queries.
+              </p>
+              <p>
+                <strong>Solution:</strong> I designed a normalized catalog
+                schema with variant relationships and indexes, then enforced
+                validation in the API to keep inventory, pricing, and media in
+                sync.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Reliable media handling</h3>
+              <p>
+                <strong>Problem:</strong> Seller uploads had to be secure,
+                scalable, and resilient to failed or partial uploads.
+              </p>
+              <p>
+                <strong>Solution:</strong> I implemented presigned URL uploads
+                to S3-compatible storage with size and type validation, plus
+                consistent cleanup patterns for failed uploads.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Payments, refunds, and seller payouts</h3>
+              <p>
+                <strong>Problem:</strong> The platform needed to handle
+                multi-seller checkout, refunds, and payouts while keeping order
+                and payment states consistent.
+              </p>
+              <p>
+                <strong>Solution:</strong> I integrated Stripe for checkout and
+                seller onboarding, enforced order state transitions, and added
+                webhook-driven updates for payment status and refunds.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section reveal" id="impact">
+          <h2>Results / Impact</h2>
+          <div class="metrics">
+            <div class="metric">
+              <h4>Production-ready backend</h4>
+              <p>
+                Aligned with transparency and authenticity goals for a trusted
+                marketplace.
+              </p>
+            </div>
+            <div class="metric">
+              <h4>Simplified deployment</h4>
+              <p>
+                Dockerized packaging reduced environment issues and sped up
+                releases.
+              </p>
+            </div>
+            <div class="metric">
+              <h4>Secure payment flows</h4>
+              <p>
+                Stripe Connect ensured safe checkout, refunds, and seller
+                payouts.
+              </p>
+            </div>
+            <div class="metric">
+              <h4>Maintainable architecture</h4>
+              <p>
+                Modular services and a well-structured schema support future
+                growth.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section reveal" id="screens">
+          <h2>Screenshots / Demo</h2>
+          <p>Replace the placeholders with real screenshots when available.</p>
+          <div class="images">
+            <div class="image-card">
+              <img
+                src="https://via.placeholder.com/600x400/111827/8fd3c3?text=Admin+Dashboard"
+                alt="Admin dashboard placeholder"
+              />
+              <div>Admin dashboard overview</div>
+            </div>
+            <div class="image-card">
+              <img
+                src="https://via.placeholder.com/600x400/161b22/ffd7a2?text=Seller+Portal"
+                alt="Seller portal placeholder"
+              />
+              <div>Seller catalog and order management</div>
+            </div>
+            <div class="image-card">
+              <img
+                src="https://via.placeholder.com/600x400/1f2937/9ad0ff?text=Buyer+Flow"
+                alt="Buyer flow placeholder"
+              />
+              <div>Buyer browsing and checkout flow</div>
+            </div>
+            <div class="image-card">
+              <img
+                src="https://via.placeholder.com/600x400/0f172a/e7a86f?text=Mobile+Preview"
+                alt="Mobile preview placeholder"
+              />
+              <div>Mobile responsiveness preview</div>
+            </div>
+          </div>
+          <p style="margin-top: 16px; color: var(--muted)">
+            Live demo: Not publicly available
+          </p>
+          <p style="color: var(--muted)">GitHub: Not publicly available</p>
+        </section>
+
+        <section class="section reveal" id="learning">
+          <h2>What I Learned</h2>
+          <p>
+            This project deepened my understanding of scalable marketplace
+            architecture, Stripe Connect workflows, and the operational
+            trade-offs of building trust features such as verification and
+            transparent reporting.
+          </p>
+        </section>
+
+        <section class="section reveal" id="confidential">
+          <h2>Confidentiality Note</h2>
+          <p>
+            Due to client confidentiality, source code and live production links
+            are not publicly available.
+          </p>
+        </section>
+
+        <div class="footer">
+          WabiSaviArt Case Study — crafted for a dark-theme presentation
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
