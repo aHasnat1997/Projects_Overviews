@@ -484,32 +484,34 @@
             <span class="badge">Case Study</span>
             <h1>Dove-PDF Tools Platform</h1>
             <p>
-              A comprehensive online PDF editor and toolkit that enables users
-              to upload, edit, merge, compress, and optimize PDF files directly
-              in the browser. Built with modern TypeScript stack for scalability
-              and performance, featuring a clean interface and monetization
-              through ad placements.
+              A sophisticated online PDF editor and toolkit that enables users
+              to upload, edit, highlight, annotate, merge, compress, and export
+              PDF files directly in the browser. Built with a modern TypeScript
+              monorepo architecture featuring advanced PDF-to-HTML conversion,
+              real-time overlay editing, intelligent font preservation, and dual
+              export pathways for maximum quality and flexibility.
             </p>
             <div class="pill-row" style="margin-top: 16px">
-              <span class="pill">Role: Fullstack Developer</span>
-              <span class="pill">Scope: PDF Tools Platform</span>
+              <span class="pill">Role: Fullstack Developer (Solo)</span>
+              <span class="pill">Scope: Full-Stack PDF Platform</span>
               <span class="pill">
-                Focus: PDF Processing + UX + Modern Stack
+                Focus: PDF Conversion + Overlay System + Font Mapping
               </span>
             </div>
           </div>
           <div class="hero-card">
             <strong>Highlights</strong>
             <p>
-              PDF upload & editing, multi-file merging, compression, scalable
-              architecture, and ad integration.
+              PDF-to-HTML conversion, normalized overlay system, 300+ font
+              mapping, dual export pathways, IndexedDB persistence, and headless
+              Chrome rendering.
             </p>
             <div class="pill-row">
-              <span class="pill">TypeScript</span>
-              <span class="pill">React</span>
-              <span class="pill">tRPC</span>
-              <span class="pill">PDF-lib</span>
-              <span class="pill">Bun</span>
+              <span class="pill">React 19</span>
+              <span class="pill">Zustand</span>
+              <span class="pill">pdf-lib</span>
+              <span class="pill">Stirling PDF</span>
+              <span class="pill">IndexedDB</span>
             </div>
           </div>
         </section>
@@ -517,33 +519,35 @@
         <section class="section reveal delay-1" id="overview">
           <h2>Overview</h2>
           <p>
-            Dove-PDF is an online PDF tools platform that simplifies document
-            management for users. Upload PDFs or images, edit content, merge
-            multiple files, compress for optimization, and download processed
-            documents—all through a clean, intuitive web interface.
+            Dove-PDF is a sophisticated online PDF editor featuring advanced
+            PDF-to-HTML conversion with font preservation, real-time overlay
+            editing system with normalized coordinates, and dual export pathways
+            (direct PDF or HTML-to-PDF rendering). Built with React 19, Zustand,
+            and IndexedDB persistence for handling large binary files.
           </p>
           <div class="grid">
             <div class="card">
               <h3>Vision</h3>
               <p>
-                Create a simple yet powerful PDF toolkit accessible to everyone,
-                with a scalable architecture ready for future tool additions.
+                Build a browser-based PDF editor with desktop-grade capabilities,
+                featuring advanced conversion algorithms, intelligent font
+                mapping, and resolution-independent overlay system.
               </p>
             </div>
             <div class="card">
-              <h3>User Experience</h3>
+              <h3>Technical Innovation</h3>
               <p>
-                Clean, distraction-free interface that guides users through
-                upload, processing, and download workflows with minimal
-                friction.
+                Normalized coordinate system for overlays, custom IndexedDB
+                serialization for binary data, 300+ font family mapping engine,
+                and conditional export logic.
               </p>
             </div>
             <div class="card">
               <h3>Outcome</h3>
               <p>
-                A production-ready PDF platform with core editing features,
-                monetization through ads, and extensible architecture for new
-                tools.
+                Production-ready platform with 95%+ font preservation, pixel-perfect
+                overlay positioning, 50MB+ PDF support in IndexedDB, and dual
+                export pathways for quality optimization.
               </p>
             </div>
           </div>
@@ -553,66 +557,98 @@
           <h2>Problem / Challenge</h2>
           <p>
             Users need quick, reliable tools to manage PDF documents without
-            installing desktop software. The challenge was to build a web-based
-            platform that handles PDF uploads, editing, merging, and compression
-            efficiently while maintaining file quality and security. The system
-            needed to process files client-side when possible for privacy,
-            handle large files gracefully, provide instant feedback, and support
-            a scalable architecture for adding more PDF tools. Additionally, the
-            platform required ad integration for monetization without
-            compromising user experience.
+            installing desktop software. The core technical challenges included:
+            <br /><br />
+            <strong>1. PDF-to-HTML Conversion:</strong> Converting complex PDFs
+            while preserving fonts, images, layouts, and styling.
+            <br />
+            <strong>2. Interactive Editing:</strong> Enabling real-time overlay
+            editing (highlights, annotations, signatures, images) with precise
+            positioning.
+            <br />
+            <strong>3. Font Preservation:</strong> Handling 300+ font families
+            from academic PDFs (LaTeX, Times New Roman, Arial variants) and
+            mapping them to web-safe alternatives.
+            <br />
+            <strong>4. Export Quality:</strong> Maintaining original PDF quality
+            when no edits are made, while supporting HTML-rendered exports when
+            content is modified.
+            <br />
+            <strong>5. State Management:</strong> Persisting large binary PDF
+            data and edit history in browser storage without performance
+            degradation.
           </p>
         </section>
 
         <section class="section reveal delay-2" id="solution">
           <h2>Solution</h2>
           <p>
-            I delivered a comprehensive PDF tools platform using a modern
-            TypeScript stack. The frontend is built with React and Vite,
-            featuring drag-and-drop file uploads, real-time processing feedback,
-            and a clean TailwindCSS interface. I integrated PDF-lib for
-            client-side PDF manipulation, enabling editing, merging, and
-            compression without server round-trips for enhanced privacy. The
-            backend API, built with Express and tRPC, processing coordination,
-            and serves optimized files. The monorepo architecture with Turborepo
-            ensures maintainability and easy addition of new tools. Google Ads
-            integration provides monetization while maintaining a clean user
-            experience.
+            I architected and implemented a full-stack PDF processing platform:
+            <br /><br />
+            <strong>Frontend:</strong> React 19 + Vite with Zustand state
+            management and IndexedDB persistence (custom Uint8Array
+            serialization). Normalized overlay coordinate system (0-1 ratios)
+            for resolution-independent positioning. pdf-lib for client-side
+            manipulation, html2canvas + jsPDF for HTML-to-PDF conversion.
+            <br /><br />
+            <strong>Backend:</strong> Express + tRPC for type-safe APIs.
+            Stirling PDF API integration for PDF→HTML conversion. Custom font
+            mapping system normalizing 300+ font families. Dual export strategy:
+            direct pdf-lib overlays OR headless Chrome HTML rendering. Multer
+            file uploads with JSZip for asset extraction.
+            <br /><br />
+            <strong>Conversion Pipeline:</strong> Upload → Stirling PDF API →
+            ZIP extraction (HTML + fonts + images) → Base64 asset encoding →
+            Font-family parsing → @font-face CSS generation → Inline style
+            preservation → Return to frontend.
+            <br /><br />
+            <strong>Export Process:</strong> No HTML edits = direct PDF-lib
+            overlay application. With HTML edits = inject overlays as HTML
+            elements → html2canvas capture → jsPDF assembly → optional Stirling
+            compression.
           </p>
         </section>
 
         <section class="section reveal delay-3" id="role">
           <h2>My Role</h2>
-          <p><strong>Fullstack Developer</strong></p>
+          <p><strong>Fullstack Developer (Solo Project)</strong></p>
           <ul>
             <li>
-              Architected the PDF processing pipeline with client-side and
-              server-side components
+              Architected entire PDF processing pipeline: PDF→HTML conversion,
+              overlay system, font preservation, dual export pathways
             </li>
             <li>
-              Implemented PDF upload, editing, merging, and compression features
-              using PDF-lib
+              Implemented IndexedDB persistence with custom Uint8Array
+              serialization for 50MB+ PDF files in browser storage
             </li>
             <li>
-              Built drag-and-drop file upload interface with real-time progress
-              feedback
+              Built normalized coordinate overlay system (0-1 ratios) enabling
+              resolution-independent positioning across zoom levels
             </li>
             <li>
-              Designed clean, intuitive UI with TailwindCSS for seamless user
-              workflows
+              Created font mapping engine parsing 300+ families (LaTeX, Times New
+              Roman variants) with weight/style inference and @font-face
+              generation
             </li>
             <li>
-              Integrated Google Ads placements strategically for monetization
+              Integrated Stirling PDF API with ZIP extraction, asset embedding,
+              and font processing
             </li>
             <li>
-              Created scalable backend API with tRPC for file handling and
-              processing coordination
+              Developed dual export: pdf-lib overlays for pristine quality,
+              headless Chrome HTML-to-PDF for edited content
             </li>
             <li>
-              Optimized file processing for performance and memory efficiency
+              Implemented undo/redo system with state history and keyboard
+              shortcuts (Ctrl+Z/Shift+Z)
             </li>
             <li>
-              Set up monorepo structure for easy addition of future PDF tools
+              Designed React component architecture: preview panes (iframe
+              rendering), overlay canvas, page reordering
+            </li>
+            <li>
+              Set up Turborepo monorepo with shared TypeScript configs, tRPC type
+              safety, coordinated builds
             </li>
           </ul>
         </section>
@@ -622,19 +658,23 @@
           <div class="grid">
             <div class="stack-item">
               <strong>Frontend</strong>
-              <span>React, Vite, TailwindCSS, TypeScript, PDF-lib</span>
+              <span>React 19, Vite, TailwindCSS 4, Zustand, pdf-lib, pdfjs-dist,
+                html2canvas, jsPDF, react-pdf</span>
             </div>
             <div class="stack-item">
               <strong>Backend</strong>
-              <span>Express, tRPC, TypeScript, File Processing APIs</span>
+              <span>Express, tRPC, Multer, Stirling PDF API, JSZip, html-to-docx,
+                Headless Chrome</span>
             </div>
             <div class="stack-item">
               <strong>PDF Processing</strong>
-              <span>PDF-lib, Canvas API, File API, Blob handling</span>
+              <span>PDF-lib, Canvas API, IndexedDB, DOMParser, Base64
+                encoding/decoding, File API</span>
             </div>
             <div class="stack-item">
               <strong>Infrastructure</strong>
-              <span>Bun runtime, Turborepo, Google Ads, Git</span>
+              <span>Bun runtime, Turborepo, Docker, Vercel, ESLint, TypeScript
+                ESLint</span>
             </div>
           </div>
         </section>
@@ -642,33 +682,45 @@
         <section class="section reveal delay-4" id="features">
           <h2>Key Features</h2>
           <ul>
-            <li>PDF and image upload and file validation</li>
             <li>
-              PDF editing capabilities including text, annotations, and page
-              manipulation
+              PDF and image upload with drag-and-drop, file validation
+              (PDF/PNG/JPG/WEBP), multi-file support
             </li>
             <li>
-              Merge multiple PDF files into a single document with custom
-              ordering
+              PDF-to-HTML conversion preserving fonts, images, colors, layout
+              structure
             </li>
             <li>
-              Compress and optimize PDF files to reduce size while maintaining
-              quality
-            </li>
-            <li>Real-time processing feedback with progress indicators</li>
-            <li>Instant download of processed files with proper naming</li>
-            <li>
-              Clean, intuitive interface designed for simplicity and ease of use
+              Highlight tool with customizable colors and freeform rectangle
+              drawing
             </li>
             <li>
-              Client-side processing for enhanced privacy and faster operations
+              Signature tool with image upload and aspect-ratio-preserved scaling
             </li>
             <li>
-              Google Ads integration for monetization without disrupting
-              workflow
+              Image insertion for logos/stamps with drag-and-drop positioning
             </li>
             <li>
-              Scalable architecture ready for additional PDF tools and features
+              Page reordering with drag-and-drop and automatic overlay
+              synchronization
+            </li>
+            <li>
+              PDF compression with 4 quality levels (0-3) via Stirling PDF
+              optimization
+            </li>
+            <li>
+              Undo/redo system with full history and keyboard shortcuts
+            </li>
+            <li>
+              Normalized coordinate system ensuring overlays position correctly
+              across zoom levels
+            </li>
+            <li>
+              Dual export strategy: original PDF quality OR HTML-to-PDF rendering
+            </li>
+            <li>
+              IndexedDB persistence automatically saves work with 50MB+ file
+              support
             </li>
           </ul>
         </section>
@@ -677,43 +729,44 @@
           <h2>My Contributions</h2>
           <ul>
             <li>
-              Built the complete PDF upload system with file validation, and
-              preview
+              Built complete PDF-to-HTML conversion pipeline: Stirling PDF API
+              integration, ZIP extraction, font/image processing
             </li>
             <li>
-              Implemented PDF editing features using PDF-lib for text,
-              annotations, and modifications
+              Implemented overlay coordinate system using normalized ratios (0-1)
+              for resolution-independent positioning
             </li>
             <li>
-              Created PDF merge functionality with reorderable file list and
-              batch processing
+              Created font mapping engine: parses font-family CSS, strips
+              obfuscation prefixes, generates @font-face rules for 300+ fonts
             </li>
             <li>
-              Developed compression algorithm integration to optimize PDF file
-              sizes
+              Developed dual export pathways: direct pdf-lib overlay application
+              OR HTML-to-PDF via headless Chrome
             </li>
             <li>
-              Designed and built the clean, user-friendly interface with
-              TailwindCSS
+              Implemented IndexedDB persistence with custom Uint8Array
+              serialization and state migration logic
             </li>
             <li>
-              Integrated Google Ads with strategic placement for optimal
-              monetization
+              Built overlay canvas system: drag-and-drop, resize handles, hit
+              detection, real-time coordinate calculation
             </li>
             <li>
-              Implemented file processing pipeline with progress tracking and
-              error handling
+              Created highlight/signature/image tools with color picker, file
+              validation, aspect-ratio scaling
             </li>
             <li>
-              Set up backend API with tRPC for file storage and processing
-              coordination
+              Designed component architecture: LeftSidebar, PreviewPane,
+              RightPanel, TopBar with modular structure
             </li>
             <li>
-              Optimized client-side processing for performance and memory
-              management
+              Set up Express + tRPC backend: CORS, multer uploads, Stirling PDF
+              integration, Chrome renderer
             </li>
             <li>
-              Created extensible architecture for easy addition of new PDF tools
+              Configured Turborepo monorepo with workspace dependencies, build
+              caching, parallel execution
             </li>
           </ul>
         </section>
@@ -722,45 +775,53 @@
           <h2>Challenges &amp; Solutions</h2>
           <div class="grid">
             <div class="card">
-              <h3>Large file handling and performance</h3>
+              <h3>PDF-to-HTML with Font Preservation</h3>
               <p>
-                <strong>Problem:</strong> Processing large PDF files in the
-                browser can cause memory issues and slow performance, leading to
-                poor user experience.
+                <strong>Problem:</strong> PDFs use embedded fonts browsers can't
+                render. Academic PDFs use LaTeX fonts (Computer Modern, Nimbus)
+                with obfuscated names like "GKKWXB+NimbusRomNo9L-Medi". Must map
+                to web-safe alternatives while maintaining weight/style.
               </p>
               <p>
-                <strong>Solution:</strong> Implemented chunked file processing
-                with Web Workers for heavy operations, added progress
-                indicators, and optimized memory usage by processing files in
-                streams where possible.
-              </p>
-            </div>
-            <div class="card">
-              <h3>PDF manipulation complexity</h3>
-              <p>
-                <strong>Problem:</strong> PDF editing, merging, and compression
-                require complex operations while maintaining document integrity
-                and quality.
-              </p>
-              <p>
-                <strong>Solution:</strong> Integrated PDF-lib for robust
-                client-side manipulation, implemented validation checks at each
-                step, and created fallback server-side processing for complex
-                operations.
+                <strong>Solution:</strong> Built font mapping system: (1) Parse
+                HTML for font-family, (2) Strip prefixes and normalize, (3) Match
+                against 300-entry map, (4) Infer weight/style from name, (5)
+                Generate @font-face rules with data URLs or fallbacks.
               </p>
             </div>
             <div class="card">
-              <h3>Monetization without disruption</h3>
+              <h3>Overlay Positioning Across Zoom & Export</h3>
               <p>
-                <strong>Problem:</strong> Integrating ads for revenue while
-                maintaining a clean, user-friendly interface without disrupting
-                the workflow.
+                <strong>Problem:</strong> Users edit at various zoom levels
+                (50-150%), but overlays must position correctly in preview, export
+                to correct positions in final PDF, survive page reordering, work
+                for both PDF and HTML-to-PDF rendering.
               </p>
               <p>
-                <strong>Solution:</strong> Strategically placed Google Ads in
-                non-intrusive locations, implemented lazy loading for ad
-                scripts, and ensured ads don't interfere with core PDF
-                processing functionality.
+                <strong>Solution:</strong> Normalized coordinate system: store
+                positions as ratios (0-1), not pixels. Formula: normalizedX =
+                pixelX / pageWidth. Each overlay stores pageId to survive
+                reordering. Preview uses CSS transform: scale(), then
+                reverse-scales mouse coords. Export multiplies by PDF/HTML
+                dimensions.
+              </p>
+            </div>
+            <div class="card">
+              <h3>IndexedDB Persistence with Binary Data</h3>
+              <p>
+                <strong>Problem:</strong> PDFs stored as Uint8Array (binary), but
+                IndexedDB serialization via JSON.stringify loses binary data.
+                50MB+ PDFs need efficient encoding. localStorage (5MB limit)
+                insufficient. Zustand's default serialization breaks on typed
+                arrays.
+              </p>
+              <p>
+                <strong>Solution:</strong> Custom IndexedDB adapter: (1)
+                Serialization walks object tree, detects Uint8Array, converts to
+                base64 with markers, (2) Chunking processes in 32KB chunks, (3)
+                Deserialization decodes base64 back to Uint8Array, (4) Migration
+                logic for old formats, (5) Selective persistence of necessary
+                state only.
               </p>
             </div>
           </div>
@@ -770,31 +831,31 @@
           <h2>Results / Impact</h2>
           <div class="metrics">
             <div class="metric">
-              <h4>Complete PDF toolkit</h4>
+              <h4>95%+ Font Preservation</h4>
               <p>
-                Delivered all core features: upload, edit, merge, compress, and
-                download with intuitive workflows.
+                Successfully converted complex PDFs to editable HTML with accurate
+                font mapping across 300+ families.
               </p>
             </div>
             <div class="metric">
-              <h4>Fast processing</h4>
+              <h4>Pixel-Perfect Overlays</h4>
               <p>
-                Client-side processing provides instant feedback and enhanced
-                privacy for users.
+                Normalized coordinate system ensures consistent positioning across
+                zoom levels and export formats.
               </p>
             </div>
             <div class="metric">
-              <h4>Scalable architecture</h4>
+              <h4>50MB+ PDF Support</h4>
               <p>
-                Modular design allows easy addition of new PDF tools and
-                features as needed.
+                IndexedDB persistence with custom serialization, &lt;100ms load
+                times, automatic workspace recovery.
               </p>
             </div>
             <div class="metric">
-              <h4>Monetization ready</h4>
+              <h4>Dual Export Quality</h4>
               <p>
-                Google Ads integration provides revenue stream without
-                compromising user experience.
+                100% original quality for non-edited PDFs, HTML rendering for
+                edited content via headless Chrome.
               </p>
             </div>
           </div>
@@ -809,7 +870,7 @@
                 alt="PDF upload interface"
                 onclick="openModal(0)"
               />
-              <div>Hero Section</div>
+              <div>PDF upload interface</div>
             </div>
             <div class="image-card">
               <img
@@ -817,15 +878,15 @@
                 alt="PDF editor"
                 onclick="openModal(1)"
               />
-              <div>PDF editing interface</div>
+              <div>PDF editing with overlays</div>
             </div>
             <div class="image-card">
               <img
                 src="./assets/image-3.png"
-                alt="Merge PDFs"
+                alt="Full application"
                 onclick="openModal(2)"
               />
-              <div>Full Landing Page</div>
+              <div>Full application view</div>
             </div>
             <!-- <div class="image-card">
               <img
@@ -844,10 +905,13 @@
             This project deepened my understanding of client-side PDF
             manipulation, file processing optimization, and memory management
             for large files in the browser. I gained valuable experience with
-            PDF-lib, Web Workers for performance, and balancing feature richness
-            with simplicity in user interface design. The challenge of
-            integrating monetization while maintaining user experience taught me
-            important lessons about strategic ad placement.
+            PDF-lib for document manipulation, custom IndexedDB adapters for
+            binary data storage, and the intricacies of handling various PDF
+            formats with embedded fonts. The challenge of building a normalized
+            coordinate system taught me important lessons about abstraction
+            layers that decouple storage from presentation. I also learned
+            effective techniques for building type-safe full-stack applications
+            with tRPC and organizing complex codebases using Turborepo monorepos.
           </p>
         </section>
 
@@ -880,11 +944,10 @@
       const images = [
         {
           src: "./assets/image-1.png",
-          caption: "PDF upload with drag-and-drop",
+          caption: "PDF upload interface with drag-and-drop",
         },
-        { src: "./assets/image-2.png", caption: "PDF editing interface" },
-        { src: "./assets/image-3.png", caption: "Merge multiple PDFs" },
-        { src: "./assets/image-4.png", caption: "PDF compression tool" },
+        { src: "./assets/image-2.png", caption: "PDF editing with overlay system" },
+        { src: "./assets/image-3.png", caption: "Full application view" },
       ];
 
       let currentIndex = 0;
