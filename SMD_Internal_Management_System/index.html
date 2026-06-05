@@ -1,0 +1,1049 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sarkar Group SMD — Case Study</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0b0c0f;
+        --bg-elev: #12141a;
+        --bg-soft: #181b23;
+        --text: #e6e9ef;
+        --muted: #b1b6c2;
+        --accent: #3fd0b2;
+        --accent-2: #e7a86f;
+        --line: #2a2f3b;
+        --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+        --radius: 20px;
+        --maxw: 1120px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Space Grotesk", "Segoe UI", sans-serif;
+        background:
+          radial-gradient(
+            1200px 700px at 15% -10%,
+            rgba(63, 208, 178, 0.12),
+            transparent 60%
+          ),
+          radial-gradient(
+            900px 600px at 90% 10%,
+            rgba(231, 168, 111, 0.1),
+            transparent 60%
+          ),
+          linear-gradient(180deg, #0a0b0e 0%, #0e1117 100%);
+        color: var(--text);
+        line-height: 1.65;
+        letter-spacing: 0.1px;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .page {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .page::before,
+      .page::after {
+        content: "";
+        position: absolute;
+        width: 520px;
+        height: 520px;
+        border-radius: 50%;
+        filter: blur(100px);
+        opacity: 0.2;
+        z-index: 0;
+      }
+
+      .page::before {
+        background: #3fd0b2;
+        top: -220px;
+        right: -180px;
+      }
+      .page::after {
+        background: #e7a86f;
+        bottom: -260px;
+        left: -180px;
+      }
+
+      .container {
+        width: min(100%, var(--maxw));
+        margin: 0 auto;
+        padding: 64px 24px 120px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero {
+        display: grid;
+        gap: 32px;
+        align-items: center;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        padding: 40px 32px;
+        border-radius: var(--radius);
+        background: linear-gradient(
+          135deg,
+          rgba(63, 208, 178, 0.08),
+          rgba(231, 168, 111, 0.08)
+        );
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+      }
+
+      .hero h1 {
+        font-family: "Fraunces", "Times New Roman", serif;
+        font-size: clamp(2rem, 3vw, 3rem);
+        line-height: 1.1;
+        margin-bottom: 16px;
+      }
+
+      .hero p {
+        color: var(--muted);
+        font-size: 1rem;
+      }
+
+      .hero-card {
+        background: rgba(11, 12, 15, 0.8);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 20px;
+        display: grid;
+        gap: 14px;
+      }
+
+      .pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .pill {
+        padding: 6px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: rgba(24, 27, 35, 0.8);
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+
+      .section {
+        margin-top: 56px;
+        padding: 28px 28px 32px;
+        border-radius: var(--radius);
+        background: var(--bg-elev);
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+      }
+
+      .section h2 {
+        font-family: "Fraunces", "Times New Roman", serif;
+        font-size: 1.7rem;
+        margin-bottom: 16px;
+      }
+
+      .section h3 {
+        font-size: 1.1rem;
+        margin-top: 20px;
+        margin-bottom: 8px;
+        color: var(--accent);
+      }
+
+      .section p {
+        color: var(--muted);
+        margin-bottom: 12px;
+      }
+
+      .grid {
+        display: grid;
+        gap: 18px;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      }
+
+      .card {
+        padding: 18px;
+        border-radius: 16px;
+        background: var(--bg-soft);
+        border: 1px solid var(--line);
+      }
+
+      ul {
+        list-style: none;
+        display: grid;
+        gap: 10px;
+        color: var(--muted);
+      }
+
+      ul li {
+        position: relative;
+        padding-left: 18px;
+      }
+
+      ul li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.55rem;
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--accent);
+      }
+
+      .stack-list {
+        display: grid;
+        gap: 14px;
+      }
+
+      .stack-item {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 12px 14px;
+        border-radius: 14px;
+        background: rgba(18, 20, 26, 0.9);
+        border: 1px solid var(--line);
+      }
+
+      .stack-item span {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(63, 208, 178, 0.14);
+        color: var(--text);
+        font-size: 0.8rem;
+        border: 1px solid rgba(63, 208, 178, 0.4);
+      }
+
+      .metrics {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      }
+
+      .metric {
+        padding: 18px;
+        border-radius: 16px;
+        background: linear-gradient(
+          160deg,
+          rgba(63, 208, 178, 0.12),
+          rgba(24, 27, 35, 0.9)
+        );
+        border: 1px solid var(--line);
+      }
+
+      .metric h4 {
+        font-size: 1.1rem;
+        margin-bottom: 6px;
+      }
+      .metric p {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .images {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        margin-top: 18px;
+      }
+
+      .image-card {
+        background: var(--bg-soft);
+        border-radius: 16px;
+        border: 1px solid var(--line);
+        overflow: hidden;
+      }
+
+      .image-card img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        display: block;
+        cursor: pointer;
+        transition:
+          transform 0.3s ease,
+          opacity 0.3s ease;
+      }
+
+      .image-card img:hover {
+        transform: scale(1.05);
+        opacity: 0.9;
+      }
+      .image-card div {
+        padding: 12px 14px;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .footer {
+        margin-top: 60px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .reveal {
+        animation: rise 0.9s ease both;
+      }
+      .delay-1 {
+        animation-delay: 0.05s;
+      }
+      .delay-2 {
+        animation-delay: 0.12s;
+      }
+      .delay-3 {
+        animation-delay: 0.2s;
+      }
+      .delay-4 {
+        animation-delay: 0.28s;
+      }
+
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(18px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 720px) {
+        .container {
+          padding: 48px 18px 96px;
+        }
+        .hero {
+          padding: 28px 20px;
+        }
+        .section {
+          padding: 22px 20px 26px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .reveal,
+        .delay-1,
+        .delay-2,
+        .delay-3,
+        .delay-4 {
+          animation: none;
+        }
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal.active {
+        display: flex;
+      }
+
+      .modal-content {
+        position: relative;
+        max-width: 90%;
+        max-height: 90vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal-content img {
+        max-width: 100%;
+        max-height: 90vh;
+        object-fit: contain;
+        border-radius: 8px;
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 10000;
+        transition: color 0.3s ease;
+      }
+
+      .modal-close:hover {
+        color: var(--accent);
+      }
+
+      .modal-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        padding: 16px 20px;
+        font-size: 24px;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        user-select: none;
+      }
+
+      .modal-nav:hover {
+        background: rgba(63, 208, 178, 0.3);
+        border-color: var(--accent);
+      }
+      .modal-prev {
+        left: 30px;
+      }
+      .modal-next {
+        right: 30px;
+      }
+
+      .modal-caption {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #fff;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-size: 1rem;
+      }
+
+      @media (max-width: 720px) {
+        .modal-nav {
+          padding: 12px 16px;
+          font-size: 20px;
+        }
+        .modal-prev {
+          left: 10px;
+        }
+        .modal-next {
+          right: 10px;
+        }
+        .modal-close {
+          top: 10px;
+          right: 15px;
+          font-size: 32px;
+        }
+        .modal-caption {
+          font-size: 0.9rem;
+          padding: 10px 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <main class="container">
+        <!-- HERO -->
+        <section class="hero reveal">
+          <div>
+            <span class="badge">Case Study</span>
+            <h1>Sarkar Group — SMD</h1>
+            <p>
+              A production-grade internal management system for a construction
+              and marine engineering company. Multiple roles — Super Admin,
+              Admin, Project Manager, Engineer, Client — each operate within a
+              tailored, permission-isolated dashboard. The platform covers
+              project management, equipment lifecycle tracking, financial
+              workflows, HR applications, media publishing, and real-time
+              notifications — all in a single monolithic REST system.
+            </p>
+            <div class="pill-row" style="margin-top: 16px">
+              <span class="pill">Role: Fullstack Developer (Solo)</span>
+              <span class="pill">Scope: Full-Stack Internal Tool</span>
+              <span class="pill">Focus: RBAC + Workflows + Real-time SSE</span>
+            </div>
+          </div>
+          <div class="hero-card">
+            <strong>Highlights</strong>
+            <p>
+              5 user roles, 15+ API modules, generic PrismaQueryBuilder, SSE
+              real-time notifications, Docker deployment, Cloudinary file
+              storage, and full approval workflow engine.
+            </p>
+            <div class="pill-row">
+              <span class="pill">TypeScript</span>
+              <span class="pill">Express</span>
+              <span class="pill">Prisma + MongoDB</span>
+              <span class="pill">Next.js 16</span>
+              <span class="pill">Redux Toolkit</span>
+              <span class="pill">SSE</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- OVERVIEW -->
+        <section class="section reveal delay-1" id="overview">
+          <h2>Overview</h2>
+          <p>
+            Sarkar Group SMD replaces fragmented spreadsheet workflows with a
+            unified internal platform. It handles the full operational
+            lifecycle: registering and assigning construction equipment,
+            managing multi-department projects with engineers and clients,
+            processing financial requisitions and payments, handling HR
+            applications, publishing company media, and delivering real-time
+            notifications to all relevant users on every workflow action.
+          </p>
+          <div class="grid">
+            <div class="card">
+              <h3>Vision</h3>
+              <p>
+                One platform for all internal operations — project assignments,
+                equipment tracking, financial approvals, employee HR requests,
+                and company content — with strict role-based access enforced at
+                every layer.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Technical Innovation</h3>
+              <p>
+                Generic chainable PrismaQueryBuilder serving 15+ modules,
+                SSE-based real-time notification service with per-user client
+                registry, parallel Prisma transaction queries for role-specific
+                dashboards, and a full approval workflow engine.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Outcome</h3>
+              <p>
+                Production-live system with 5 operational user roles, 20+
+                database models, real-time push notifications, Dockerized
+                deployment with health checks, and all company workflows
+                digitized.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- PROBLEM -->
+        <section class="section reveal delay-2" id="problem">
+          <h2>Problem / Challenge</h2>
+          <p>
+            The company managed construction equipment, marine vessels,
+            engineering projects, and a multi-department workforce through
+            manual, disconnected processes.
+          </p>
+          <p>
+            <strong>1. Multi-role access:</strong> Different roles need isolated
+            views and strict permission enforcement without code duplication.<br />
+            <strong>2. Equipment lifecycle:</strong> Tracking equipment across
+            STAND_BY → assigned → project completion with request/approval
+            flows.<br />
+            <strong>3. Financial workflows:</strong> Payments and requisitions
+            needed a full submit → review → approve/reject cycle with documented
+            decline reasons.<br />
+            <strong>4. HR applications:</strong> 8 application types (leave,
+            resignation, salary advance, loan, complaint, etc.) required
+            structured, auditable workflows.<br />
+            <strong>5. Real-time feedback:</strong> Employees needed instant
+            notifications when admins acted on their submissions — without
+            polling.<br />
+            <strong>6. Scalable query layer:</strong> 15+ modules all need
+            search, filter, sort, paginate, and include — duplicating this would
+            be unmaintainable.
+          </p>
+        </section>
+
+        <!-- SOLUTION -->
+        <section class="section reveal delay-2" id="solution">
+          <h2>Solution</h2>
+          <p>
+            <strong>Backend:</strong> TypeScript + Express with a structured
+            Rocket server class (load → initiate → launch lifecycle). JWT
+            authentication with role-array authGuard middleware on every
+            protected route. Generic PrismaQueryBuilder class — accepts any
+            Prisma delegate, chainable .search() / .filter() / .sort() /
+            .paginate() / .includeRelations() — reused across all 15+ modules.
+            Zod validation on every mutation endpoint.
+          </p>
+          <p>
+            <strong>Real-time Notifications:</strong> Singleton
+            NotificationService maintains a Map&lt;userId,
+            Set&lt;Response&gt;&gt; for all SSE connections. On workflow events
+            (payment/requisition/application created), it broadcasts to all
+            admin roles. On approval/rejection, it sends a targeted notification
+            to the submitting employee. Keepalive pings every 20s prevent proxy
+            timeouts; connection cleanup on close/finish/error.
+          </p>
+          <p>
+            <strong>Dashboard Aggregation:</strong> Each role's dashboard
+            endpoint uses Prisma $transaction to run 10–15 parallel queries —
+            KPI counts, month-over-month delta calculations, recent records, and
+            active project lists — in a single round trip.
+          </p>
+          <p>
+            <strong>Frontend:</strong> Next.js 16 App Router with role-gated
+            route groups /(auth)/ and /(dashboard)/. Redux Toolkit +
+            redux-persist for global state, next-auth for session management.
+            MUI + TailwindCSS for UI. TipTap rich text editor for media posts.
+            react-pdf + pdfjs-dist for in-app document viewing.
+          </p>
+        </section>
+
+        <!-- ROLE -->
+        <section class="section reveal delay-3" id="role">
+          <h2>My Role</h2>
+          <p><strong>Fullstack Developer — Solo Project</strong></p>
+          <ul>
+            <li>
+              Designed the entire MongoDB schema: 20+ models, enums, relations,
+              join tables (ProjectsEngineers, ProductsProjects)
+            </li>
+            <li>
+              Built generic PrismaQueryBuilder — one class eliminates query
+              boilerplate across all 15+ modules
+            </li>
+            <li>
+              Implemented JWT auth system: sign/verify/decode/blacklist
+              utilities, role-array authGuard, SSE-specific sseAuthGuard with
+              query-param token
+            </li>
+            <li>
+              Architected all 15+ API modules: users, admins, engineers, project
+              managers, clients, projects, products, crews, payments,
+              requisitions, applications, medias, project galleries, request
+              products, notifications, dashboard
+            </li>
+            <li>
+              Built SSE notification system: singleton service with client
+              registry, broadcast-to-roles, targeted send, keepalive, connection
+              cleanup
+            </li>
+            <li>
+              Designed role-specific dashboard aggregation with parallel Prisma
+              transactions and month-over-month delta calculations
+            </li>
+            <li>
+              Implemented equipment assignment validation chain: status checks →
+              project completion checks → auto-assign on request approval
+            </li>
+            <li>
+              Set up Next.js frontend: role-based routing, Redux state, MUI +
+              Tailwind UI, TipTap editor, PDF viewer, Sonner toasts
+            </li>
+            <li>
+              Configured Docker multi-stage builds, Docker Compose with health
+              checks, and Vercel + MongoDB Atlas deployment
+            </li>
+          </ul>
+        </section>
+
+        <!-- STACK -->
+        <section class="section reveal delay-3" id="stack">
+          <h2>Tech Stack</h2>
+          <div class="grid">
+            <div class="stack-item">
+              <strong>Backend</strong>
+              <span
+                >TypeScript, Express.js, Prisma ORM, MongoDB, JWT
+                (jsonwebtoken), Zod, Bcrypt, UUID, Nodemailer, EJS, Multer,
+                Axios</span
+              >
+            </div>
+            <div class="stack-item">
+              <strong>Frontend</strong>
+              <span
+                >Next.js 16 (App Router), React 18, Redux Toolkit,
+                redux-persist, next-auth, MUI v6, TailwindCSS, Lucide React,
+                Sonner</span
+              >
+            </div>
+            <div class="stack-item">
+              <strong>Rich Content & Docs</strong>
+              <span
+                >TipTap (heading, table, image, color, highlight, underline,
+                text-align, font-family), react-pdf, pdfjs-dist,
+                react-hook-form, Zod</span
+              >
+            </div>
+            <div class="stack-item">
+              <strong>Infrastructure</strong>
+              <span
+                >Docker (multi-stage), Docker Compose, dumb-init, Vercel,
+                MongoDB Atlas, Cloudinary, devcontainer</span
+              >
+            </div>
+          </div>
+        </section>
+
+        <!-- FEATURES -->
+        <section class="section reveal delay-4" id="features">
+          <h2>Key Features</h2>
+          <ul>
+            <li>
+              5 user roles (SUPER_ADMIN, ADMIN, PROJECT_MANAGER, ENGINEER,
+              CLIENT) with fully isolated dashboards and permission-gated APIs
+            </li>
+            <li>
+              Project lifecycle management: create → assign PM → add engineers →
+              attach equipment → status tracking
+            </li>
+            <li>
+              Equipment registry with status tracking (WORKING / RUNNING /
+              STAND_BY / BREAK_DOWN), crew assignment, and project linking
+            </li>
+            <li>
+              Equipment request workflow: employee requests equipment for a
+              project; auto-assigned on admin approval
+            </li>
+            <li>
+              Payment request system with document upload, approval workflow,
+              decline reason enforcement, and SSE notification feedback
+            </li>
+            <li>
+              Requisition system for material/resource requests with document
+              support and approval workflow
+            </li>
+            <li>
+              8 HR application types: leave, resignation, transfer, salary
+              advance, loan, complaint, grievance, expense reimbursement
+            </li>
+            <li>
+              Rich media/blog system with TipTap editor, image upload, keyword
+              tagging, and comment threads
+            </li>
+            <li>
+              Project gallery: site photo uploads per project with commenting
+              for team collaboration
+            </li>
+            <li>
+              Real-time SSE notifications: instant push on workflow events;
+              unread batch on connect; mark-as-read endpoint
+            </li>
+            <li>
+              Admin personal scheduler with title, note, and date range
+              management
+            </li>
+            <li>
+              Role dashboards with KPI cards, month-over-month change
+              indicators, active project lists, and recent workflow records
+            </li>
+          </ul>
+        </section>
+
+        <!-- CONTRIBUTIONS -->
+        <section class="section reveal delay-4" id="contributions">
+          <h2>My Contributions</h2>
+          <ul>
+            <li>
+              Designed and implemented the full Prisma MongoDB schema with 20+
+              models, complex relations, and enum-driven status fields
+            </li>
+            <li>
+              Built PrismaQueryBuilder — generic chainable class reused across
+              all modules: .search() / .filter() / .sort() / .paginate() /
+              .includeRelations()
+            </li>
+            <li>
+              Implemented JWT auth with sign/verify/decode/blacklist; authGuard
+              middleware accepting role arrays; SSE-compatible sseAuthGuard with
+              query token
+            </li>
+            <li>
+              Implemented NotificationService singleton: SSE client registry,
+              broadcast-to-roles, targeted send, 20s keepalive, connection
+              lifecycle cleanup
+            </li>
+            <li>
+              Built role-specific dashboard endpoints using Prisma $transaction
+              with 10–15 parallel aggregation queries and delta calculations
+            </li>
+            <li>
+              Implemented equipment assignment validation: project status →
+              equipment status → create join record; reused in request-product
+              auto-approval
+            </li>
+            <li>
+              Architected Rocket server class (load/initiate/launch) with CORS,
+              cookie-parser, modular route registration, and global error
+              handler
+            </li>
+            <li>
+              Set up Next.js App Router with role-gated route groups, Redux
+              Toolkit + redux-persist, next-auth session management
+            </li>
+            <li>
+              Built reusable UI components: SMDDataTable, ProjectCard,
+              DockUpload, ImageUploadField, PdfViewer, ViewFile, RichTextEditor
+              (TipTap)
+            </li>
+            <li>
+              Configured Docker multi-stage build (deps → builder → runner),
+              Docker Compose with health checks, and production deployment
+              pipeline
+            </li>
+          </ul>
+        </section>
+
+        <!-- CHALLENGES -->
+        <section class="section reveal" id="challenges">
+          <h2>Challenges &amp; Solutions</h2>
+          <div class="grid">
+            <div class="card">
+              <h3>Generic Query Layer Across 15+ Modules</h3>
+              <p>
+                <strong>Problem:</strong> Every module needed search, filter,
+                sort, paginate, and relation-include. Duplicating this in each
+                service would mean hundreds of lines of near-identical code
+                across 15+ services.
+              </p>
+              <p>
+                <strong>Solution:</strong> Built generic PrismaQueryBuilder
+                accepting any Prisma delegate. All services instantiate it with
+                findMany + count delegates and chain only the operations they
+                need. One class, zero duplication.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Real-time Notifications Without WebSockets</h3>
+              <p>
+                <strong>Problem:</strong> Employees need instant feedback on
+                submission outcomes. Adding WebSocket infrastructure (socket.io,
+                separate server) would add significant complexity and deployment
+                overhead.
+              </p>
+              <p>
+                <strong>Solution:</strong> SSE via Express res.write().
+                Singleton NotificationService holds a Map&lt;userId,
+                Set&lt;Response&gt;&gt;. Events are pushed live to connected
+                clients. Keepalive pings prevent proxy drops. Cleanup runs on
+                close/finish/error events.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Equipment Assignment Validation Chain</h3>
+              <p>
+                <strong>Problem:</strong> Equipment can only be added to a
+                project if the project is not Completed and the equipment is
+                STAND_BY. The auto-approval flow must respect these rules
+                without bypassing them.
+              </p>
+              <p>
+                <strong>Solution:</strong> All assignment operations go through
+                ProjectService.addProduct which validates both conditions before
+                writing. RequestProducts approval calls this same function
+                internally — one validation path, no bypass possible.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- IMPACT -->
+        <section class="section reveal" id="impact">
+          <h2>Results / Impact</h2>
+          <div class="metrics">
+            <div class="metric">
+              <h4>15+ API Modules</h4>
+              <p>
+                Full coverage of every business domain: projects, equipment,
+                payments, requisitions, applications, media, notifications, and
+                more.
+              </p>
+            </div>
+            <div class="metric">
+              <h4>5 User Roles</h4>
+              <p>
+                Complete permission isolation across SUPER_ADMIN, ADMIN,
+                PROJECT_MANAGER, ENGINEER, and CLIENT with role-gated routes and
+                dashboards.
+              </p>
+            </div>
+            <div class="metric">
+              <h4>Real-time SSE Push</h4>
+              <p>
+                Instant notification delivery to all relevant users on every
+                workflow event — no polling, no missed updates.
+              </p>
+            </div>
+            <div class="metric">
+              <h4>Production Live</h4>
+              <p>
+                Dockerized, health-checked, deployed to Vercel + MongoDB Atlas,
+                actively used for day-to-day company operations.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SCREENSHOTS -->
+        <section class="section reveal" id="screens">
+          <h2>Screenshots / Demo</h2>
+          <div class="images">
+            <div class="image-card">
+              <img
+                src="./assets/image-1.png"
+                alt="Admin dashboard"
+                onclick="openModal(0)"
+              />
+              <div>Admin dashboard with KPI cards</div>
+            </div>
+            <div class="image-card">
+              <img
+                src="./assets/image-2.png"
+                alt="Project management"
+                onclick="openModal(1)"
+              />
+              <div>Project management view</div>
+            </div>
+            <div class="image-card">
+              <img
+                src="./assets/image-3.png"
+                alt="Equipment management"
+                onclick="openModal(2)"
+              />
+              <div>Equipment management &amp; crews</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- LEARNING -->
+        <section class="section reveal" id="learning">
+          <h2>What I Learned</h2>
+          <p>
+            This project deepened my understanding of designing multi-role
+            enterprise systems where access control must be consistent across
+            both the API and UI layers. Building the generic PrismaQueryBuilder
+            taught me the value of abstraction — one well-designed utility
+            eliminated hundreds of lines of repetitive query code across 15+
+            modules.
+          </p>
+          <p>
+            Implementing SSE from scratch gave me practical experience with HTTP
+            streaming, connection lifecycle management, and the trade-offs
+            versus WebSockets for one-directional push scenarios. The parallel
+            dashboard aggregation with Prisma $transaction highlighted the
+            importance of minimizing round trips for data-heavy endpoints.
+          </p>
+          <p>
+            The project reinforced clean module architecture — thin controllers,
+            service-layer business logic, route-level Zod validation — as the
+            pattern that scales best when a codebase grows to 15+ interconnected
+            modules with complex permission requirements.
+          </p>
+        </section>
+
+        <!-- PROJECT INFO -->
+        <section class="section reveal" id="confidential">
+          <h2>Project Information</h2>
+          <p>
+            Sarkar Group SMD is a live internal management platform used by the
+            company for day-to-day operations across construction, marine, and
+            engineering departments. It demonstrates production-grade patterns
+            for multi-role enterprise applications with real-time capabilities.
+          </p>
+        </section>
+
+        <div class="footer">
+          Sarkar Group SMD — Internal Management System Case Study
+        </div>
+      </main>
+    </div>
+
+    <!-- IMAGE MODAL -->
+    <div id="imageModal" class="modal">
+      <span class="modal-close" onclick="closeModal()">&times;</span>
+      <div class="modal-nav modal-prev" onclick="changeImage(-1)">&#10094;</div>
+      <div class="modal-content">
+        <img id="modalImage" src="" alt="" />
+        <div id="modalCaption" class="modal-caption"></div>
+      </div>
+      <div class="modal-nav modal-next" onclick="changeImage(1)">&#10095;</div>
+    </div>
+
+    <script>
+      const images = [
+        {
+          src: "./assets/Admin dashboard.png",
+          caption: "Admin Dashboard Overview",
+        },
+        {
+          src: "./assets/Engineer dashboard.png",
+          caption: "Engineer Dashboard Overview",
+        },
+        {
+          src: "./assets/Project Manager dashboard.png",
+          caption: "Project Manager Dashboard Overview",
+        },
+        { src: "./assets/Admin _ All projects.jpg", caption: "All Projects" },
+        { src: "./assets/All Employees.png", caption: "All Employees" },
+        { src: "./assets/Admin _ Media.png", caption: "All Media View" },
+        {
+          src: "./assets/View Employee Details - Profile - Personal Information.png",
+          caption: "View Employee Details",
+        },
+      ];
+
+      let currentIndex = 0;
+
+      function openModal(index) {
+        currentIndex = index;
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const caption = document.getElementById("modalCaption");
+        modal.classList.add("active");
+        modalImg.src = images[currentIndex].src;
+        caption.textContent = images[currentIndex].caption;
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal() {
+        document.getElementById("imageModal").classList.remove("active");
+        document.body.style.overflow = "auto";
+      }
+
+      function changeImage(direction) {
+        currentIndex += direction;
+        if (currentIndex < 0) currentIndex = images.length - 1;
+        if (currentIndex >= images.length) currentIndex = 0;
+        document.getElementById("modalImage").src = images[currentIndex].src;
+        document.getElementById("modalCaption").textContent =
+          images[currentIndex].caption;
+      }
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeModal();
+        if (e.key === "ArrowLeft") changeImage(-1);
+        if (e.key === "ArrowRight") changeImage(1);
+      });
+
+      document
+        .getElementById("imageModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) closeModal();
+        });
+    </script>
+  </body>
+</html>
