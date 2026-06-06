@@ -1,7 +1,5 @@
 # MyStudyPal — AI Study Buddy for Irish Students
 
-> **Case Study** | Role: Deployment & Automation Engineer | Scope: AI Educational Platform
-
 ---
 
 ## Overview
