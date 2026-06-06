@@ -1,7 +1,5 @@
 # MyStudyPal — AI Study Buddy for Irish Students
 
----
-
 ## Overview
 
 **MyStudyPal (mystudypal.ie)** is a fully-featured, AI-powered study helper designed specifically for the Irish curriculum. It acts as a personal AI study buddy, delivering instant explanations, exam-style answers, structured notes, smart quizzes, and detailed progress insights.
