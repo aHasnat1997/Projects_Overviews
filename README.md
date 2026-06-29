@@ -3,7 +3,7 @@
 > Source code for these projects is private due to client confidentiality agreements.
 > This repository documents the architecture, decisions, and outcomes of each production application I have built.
 
-I'm **Abul Hasnat** — a Full Stack Developer with hands-on experience building production-grade applications across marketplaces, SaaS platforms, internal tools, and AI-powered products.
+I'm — a Full Stack Developer with hands-on experience building production-grade applications across marketplaces, SaaS platforms, internal tools, and AI-powered products.
 
 📌 **Portfolio:** [ahasnat.dev](https://ahasnat.dev) &nbsp;|&nbsp; 💼 **LinkedIn:** [in/a-hasnat](https://linkedin.com/in/a-hasnat) &nbsp;|&nbsp; 📧 **Email:** a.hasnat.dev1@gmail.com
 
